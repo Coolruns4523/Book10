@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+ <a href="/add">Add Books</a><br/>
+<!-- <div th:each="eachBook:${books}">
+     <p th:text="${eachBook.author}"></p>
+     <p th:text="${eachBook.borrowed}?'Borrowed':'Available'"></p>
+     <a th:text="${eachBook.borrowed}?'Return': 'Borrow'" th:href="@{/changestatus/{id}(id=${eachBook.id})}"></a>
+ </div>-->
+<table>
+    <tr>
+        <th>Author</th>
+        <th>Available</th>
+        <th>Borrowed</th>
+    </tr>
+    <tr th:each="eachBook : ${books}">
+        <td th:text="${eachBook.author}"></td>
+        <td th:text="${eachBook.borrowed}?'Borrowed' : 'Available' "></td>
+        <td th:text="${eachBook.borrowed}?'Return':'Borrow'" th:href="@{/changestatus/{id}(id=${eachBook.id})}"></td>
+
+        <td>
+            <a th:href="@{/update/{id}(id=${eachBook.id})}">Update</a>-
+            <a th:href="@{/detail/{id}(id=${eachBook.id})}">Details</a>-
+            <a th:href="@{/delete/{id}(id=${eachBook.id})}">Delete</a>-
+        </td>
+    </tr>
+</table>
+</body>
+</html>
